@@ -45,6 +45,7 @@ def get_result(score):
         return "Invalid score"
 
 def print_stars(score):
+    """Print stars"""
     print("*" * score)
 
 main()
