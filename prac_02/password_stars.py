@@ -7,4 +7,8 @@ def main():
         password = str(input("Enter password: "))
     print("*" * len(password))
 
+def is_valid_password(password):
+    """check whether the password is valid"""
+    return len(password) >= MIN_LENGTH
+
 main()
