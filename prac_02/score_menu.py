@@ -8,6 +8,7 @@ MENU = """(G)et a valid score (must be 0-100 inclusive)
 
 def main():
     """main function"""
+    score = ""
     print(MENU)
     choice = str(input(">>> ")).upper()
     while choice != "Q":
@@ -18,7 +19,7 @@ def main():
             if score == "":
                 print("Please Enter your score first.")
             else:
-                result = get_result()
+                result = get_result(score)
             print(result)
         elif choice == "S":
             print_stars(score)
@@ -27,3 +28,12 @@ def main():
         print(MENU)
         choice = str(input(">>> ")).upper()
     print("Bye.")
+
+def get_score():
+    """get and return a valid score"""
+    score = float(input("Enter score: "))
+    while score <0 or score >100:
+        print("Invalid score.")
+        score = float(input("Enter score: "))
+    return score
+
