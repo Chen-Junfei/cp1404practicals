@@ -3,7 +3,9 @@ CP1404/CP5632 - Practical
 Broken program to determine score status
 """
 import random
+
 def main():
+    """main function"""
     score = float(input("Enter score: "))
     result = get_result(score)
     print(result)
@@ -13,6 +15,7 @@ def main():
     print(result)
 
 def get_result(score):
+    """get result from score"""
     if score < 0:
         return "Invalid score"
     elif score < 50:
