@@ -33,5 +33,4 @@ def load_data():
     input_file.close()
     return data
 
-
 main()
