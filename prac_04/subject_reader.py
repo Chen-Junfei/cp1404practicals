@@ -12,6 +12,7 @@ def main():
 
 
 def display_data(data):
+    """Display data line by line"""
     for row in range(len(data)):
         print(f"{data[row][0]} is taught by {data[row][1]} and has {data[row][2]} students")
 
