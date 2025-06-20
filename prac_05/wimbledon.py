@@ -8,6 +8,7 @@ Actual:   33 minutes
 FILENAME = "wimbledon.csv"
 
 def main():
+    """Carry out the main part of the program and link the corresponding functions"""
     data_list = load_file()
     name_to_times = get_dictionary(data_list)
     print("Wimbledon Champions: ")
@@ -20,6 +21,7 @@ def main():
 
 
 def load_file():
+    """Load file to return a list for main function"""
     champions = []
     with open(FILENAME, "r", encoding="utf-8-sig") as in_file:
         in_file.readline()
@@ -30,6 +32,7 @@ def load_file():
 
 
 def get_dictionary(data_list):
+    """generate a dictionary to record name and champion times"""
     name_to_times = {}
     for data in data_list:
         name_to_times[data[1]] = name_to_times.get(data[1],0) + 1
@@ -37,6 +40,7 @@ def get_dictionary(data_list):
 
 
 def get_country_list(data_list):
+    """Return a set that records the countries of the championship-winning players"""
     return set([data[0] for data in data_list])
 
 
