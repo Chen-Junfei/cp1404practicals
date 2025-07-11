@@ -1,7 +1,7 @@
 """
 Word Occurrences
 Estimate: 5 minutes
-Actual:    minutes
+Actual:   10 minutes
 """
 import datetime
 
@@ -24,3 +24,6 @@ class Project:
 
     def __lt__(self, other):
         return self.priority < other.priority
+
+    def convert_to_string(self):
+        return f"{self.name}\t{self.start_date.strftime('%d/%m/%Y')}\t{self.priority}\t{self.cost_estimate}\t{self.completion_percentage}"

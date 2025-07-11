@@ -1,7 +1,7 @@
 """
 Word Occurrences
 Estimate: 120 minutes
-Actual:    minutes
+Actual:   61 minutes
 """
 
 from project import  Project
@@ -60,7 +60,7 @@ def save_projects(filename, projects):
     out_file = open(filename, 'w')
     out_file.write("Name    Start Date	Priority	Cost Estimate	Completion Percentage")
     for project in projects:
-        out_file.write(project + '\n')
+        out_file.write(project.convert_to_string() + '\n')
     out_file.close()
 
 
