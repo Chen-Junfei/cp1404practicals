@@ -1,6 +1,6 @@
 """
 Word Occurrences
-Estimate: 60 minutes
+Estimate: 120 minutes
 Actual:    minutes
 """
 
@@ -29,6 +29,19 @@ def main():
         elif choice == 's':
             filename = input("Enter filename to save: ")
             save_projects(filename, projects)
+        elif choice == 'd':
+            display_projects(projects)
+        elif choice == 'f':
+            filter_projects_by_date(projects)
+        elif choice == 'a':
+            add_new_project(projects)
+        elif choice == 'u':
+            update_project(projects)
+        choice = input(MENU).lower()
+    save = input(f"Would you like to save to {FILENAME}? ").lower()
+    if save in ['yes', 'y']:
+        save_projects(FILENAME, projects)
+    print("Thank you for using custom-built project management software.")
 
 
 def load_projects(filename):
@@ -48,3 +61,56 @@ def save_projects(filename, projects):
     out_file.write("Name    Start Date	Priority	Cost Estimate	Completion Percentage")
     for project in projects:
         out_file.write(project + '\n')
+    out_file.close()
+
+
+def display_projects(projects):
+    print("Incomplete projects: ")
+    for project in sorted([part for part in projects if not part.is_complete()]):
+        print(f"  {project}")
+    print("Completed projects: ")
+    for project in sorted([part for part in projects if part.is_complete()]):
+        print(f"  {project}")
+
+
+def filter_projects_by_date(projects):
+    date_string = input("Show projects that start after date (dd/mm/yyyy): ")
+    filter_date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    filtered = [project for project in projects if project.start_date > filter_date]
+    filtered.sort(key=get_start_date)
+    for project in filtered:
+        print(project)
+
+
+def get_start_date(project):
+    return project.start_date
+
+
+def add_new_project(projects):
+    print("Let's add a new project")
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yyyy): ")
+    priority = input("Priority: ")
+    cost_estimate = input("Cost estimate: $")
+    completion = input("Percent complete: ")
+    project = Project(name, start_date, priority, cost_estimate, completion)
+    projects.append(project)
+
+
+def update_project(projects):
+    i = 0
+    for project in projects:
+        print(f"{i} {project}")
+        i += 1
+    index = int(input("Project choice: "))
+    project = projects[index]
+    print(project)
+    new_completion_percentage = input("New Percentage: ")
+    if new_completion_percentage != "":
+        project.completion_percentage = int(new_completion_percentage)
+    new_priority = input("New Priority: ")
+    if new_priority != "":
+        project.priority = int(new_priority)
+
+
+main()
