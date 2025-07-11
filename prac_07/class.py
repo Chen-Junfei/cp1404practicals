@@ -31,22 +31,25 @@
 
 class User:
 
-    def __init__(self, name, number_of_tacos=5, score=0):
+    def __init__(self, name):
         self.name = name
-        self.number_of_tacos = number_of_tacos
-        self.score = score
+        self.number_of_tacos = 5
+        self.score = 0
 
     def __str__(self):
         return f"{self.name}, {self.score} points, {self.number_of_tacos} tacos left"
 
     def give_tacos(self, other):
-        self.number_of_tacos -= 1
-        other.score += 1
+        if self.number_of_tacos > 0:
+            self.number_of_tacos -= 1
+            other.score += 1
+        else:
+            print("You have not taco to give")
 
 
 def main():
-    a = User("A", 5, 0)
-    b = User("B", 5, 0)
+    a = User("A")
+    b = User("B")
     a.give_tacos(b)
     print(a)
     print(b)
