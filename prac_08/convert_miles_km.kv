@@ -1,0 +1,27 @@
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        TextInput:
+            id: input_number
+            multiline: False
+            font_size: '48'
+            on_text: app.press_convert(input_number.text)
+        BoxLayout:
+            orientation:'vertical'
+            size_hint_x:0.25
+            Button:
+                id: up_button
+                text: 'Up'
+                on_press: app.press_up()
+            Button:
+                id: down_button
+                text: 'Down'
+                on_press: app.press_down()
+#    Button:
+#        text: 'Covert mile to km'
+#        on_press: app.press_convert(input_number.text)
+    Label:
+        id: result
+        font_size: '48'
+        text:app.result
+        color: (1, 1, 0, 1)
